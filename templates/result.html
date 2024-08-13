@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Eureka</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1B2735, #4B3066);
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #1f2733;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        .brand {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e9ecef;
+        }
+        .result-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .result-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .result-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .images-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .images-section img {
+            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .images-section img:hover {
+            transform: scale(1.05);
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="brand">Eureka</div>
+    
+    <div class="result-section">
+        <h1>Prediction Result</h1>
+        <p>Predicted Class: {{ prediction }}</p>
+    </div>
+    
+    <h2 class="text-center mb-4">Similar Images</h2>
+    <div class="images-section">
+        {% for image in similar_images %}
+            <img src="{{ url_for('send_file', filename=image) }}" alt="Similar Image">
+        {% endfor %}
+    </div>
+    
+    <a href="/" class="back-link">Try another image</a>
+</div>
+
+<!-- Bootstrap JS (including Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
